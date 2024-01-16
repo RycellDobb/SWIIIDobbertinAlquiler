@@ -7,8 +7,28 @@ BoundedContext Seguridad
 ContextMap DobbertinAlquiler {
     contains GestionDeAlquileres, GestionDeClientes, GestionDeVehiculos, GestionDePagos, Seguridad
 
-    GestionDeClientes <- GestionDeAlquileres
-    GestionDeVehiculos <- GestionDeAlquileres 
-    GestionDePagos <- GestionDeAlquileres
+    GestionDeClientes [SK] <-> [SK] GestionDeAlquileres
+    GestionDeVehiculos [ D , C ]<-[ U , S ] GestionDeAlquileres 
+    GestionDePagos -> GestionDeAlquileres
+    Seguridad [SK] <-> [SK] GestionDeClientes
+    Seguridad [SK] <-> [SK] GestionDePagos
+}
+
+Domain InsuranceDomain {
+	Subdomain GestionDeAlquileres {
+		type = CORE_DOMAIN
+    }
+    Subdomain GestionDeClientes {
+		type = SUPPORTING_DOMAIN
+    }
+    Subdomain GestionDeVehiculos {
+		type = SUPPORTING_DOMAIN
+    }
+    Subdomain GestionDePagos {
+		type = SUPPORTING_DOMAIN
+    }
+    Subdomain Seguridad {
+		type = GENERIC_SUBDOMAIN
+    }
 }
 

@@ -1,0 +1,14 @@
+BoundedContext GestionDeAlquileres
+BoundedContext GestionDeClientes
+BoundedContext GestionDeVehiculos
+BoundedContext GestionDePagos
+BoundedContext Seguridad
+
+ContextMap DobbertinAlquiler {
+    contains GestionDeAlquileres, GestionDeClientes, GestionDeVehiculos, GestionDePagos, Seguridad
+
+    GestionDeClientes <- GestionDeAlquileres
+    GestionDeVehiculos <- GestionDeAlquileres 
+    GestionDePagos <- GestionDeAlquileres
+}
+
